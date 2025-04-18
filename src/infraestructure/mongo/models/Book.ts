@@ -1,6 +1,16 @@
 
 import mongoose,{Schema,model} from "mongoose";
 
+const AuthorSchema = new Schema({
+    name:{
+        type:String,
+        required:true,
+    },
+    nationality:{
+        type:String,
+    }
+})
+
 
 const bookSchem = new Schema({
     isbn:{
@@ -10,7 +20,7 @@ const bookSchem = new Schema({
     },
     name:{
         type:String,
-        require:true,
+        required:true,
     },
     description:{
         type:String,
@@ -33,6 +43,9 @@ const bookSchem = new Schema({
     category_id:{
         type:Schema.Types.ObjectId,
         ref:'Category'
+    },
+    authors:{
+        type:[AuthorSchema]
     }
 
 });
