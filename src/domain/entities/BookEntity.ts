@@ -10,9 +10,12 @@ export class BookEntity {
       public readonly imageUrl: string | null = null,
       public readonly status: boolean = true,
       public readonly categoryId: string | null = null, 
+      public readonly authors:{name:string,nationality?:string}[],
       public readonly createdAt: Date = new Date(),
       public readonly updatedAt: Date = new Date()
-    ) {}
+    ) {
+
+    }
   
    
     public isValid(): boolean {
@@ -27,7 +30,7 @@ export class BookEntity {
       return this.categoryId !== null;
     }
 
-    static toBookEntity(id:string="",isbn:string,name:string,description:string,imageUrl:string,status:boolean=true,categoryId:string,created_on:Date=new Date(),updated_on:Date=new Date()):BookEntity{
-        return new BookEntity(id,isbn,name,description,imageUrl,status,categoryId,created_on,updated_on);
+    static toBookEntity(data:{[key:string]:any}):BookEntity{
+        return new BookEntity(data._id,data.isbn,data.name,data.description,data.image,data.status,data.category_id,data.authors,data.created_on,data.updated_on);
     }
   }
