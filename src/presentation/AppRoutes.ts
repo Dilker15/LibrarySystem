@@ -4,6 +4,7 @@ import { UserRoutes } from "./routes/user.routes";
 import { verifyToken } from "./middlewares/VerifyTokenMiddleware";
 import { CategoryRoutes } from "./routes/category.routes";
 import { StudenRoutes } from "./routes/student.routes";
+import { BookRoutes } from "./routes/book.routes";
 
 
 
@@ -15,7 +16,7 @@ export class AppRoutes{
         router.use('/api/users',verifyToken,UserRoutes.startUserRoutes());
         router.use('/api/categories',verifyToken,CategoryRoutes.startRoutes());
         router.use('/api/students',verifyToken,StudenRoutes.startStudentRoutes());
-
+        router.use('/api/books',verifyToken,BookRoutes.startBookRoutes());
         return router;
     }
 

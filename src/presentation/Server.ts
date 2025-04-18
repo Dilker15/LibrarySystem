@@ -3,6 +3,7 @@ import { AppRoutes } from './AppRoutes';
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { MongoConnection } from '../infraestructure/config/MongoConnection';
+import fileUpload from 'express-fileupload'
 dotenv.config();
 
 export class Server{
@@ -31,6 +32,10 @@ export class Server{
         this.app.use(express.json());
         this.app.use(urlencoded({extended:true}));
         this.app.use(cors());
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/'
+        }));
     }
 
     startRoutes(){
